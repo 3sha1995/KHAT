@@ -91,25 +91,22 @@ nav.scrolled {
     padding: 0.7rem 6%;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.8rem;
     font-weight: 700;
     color: #E85234;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; 
-    border-radius: 50%;
-     width: 40px;
-    height: 40px;
 }
 
 .logo img {
-    width: 40px;
+    width: 40px;   
     height: 40px;
-    object-fit: contain;
-      border-radius: 50%;;
+    border-radius: 50%;
+    object-fit: cover;
 }
+
 
 .nav-links {
     display: flex;
@@ -524,15 +521,17 @@ nav.scrolled {
 .product-logo {
     width: 120px;
     height: 120px;
-    margin-bottom: 1.5rem;
-    object-fit: contain;
-    border-radius: 100%;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+    margin: 0 auto 15px;
+    border-radius: 50%; /* makes the image circular */
+    overflow: hidden;
 }
+
+
 .product-logo img{
-    width: 120px;
-    height: 10px;
-    border-radius: 100%;
+      width: 100%;
+    height: 100%;
+    object-fit: cover; /* ensures image covers the container without distortion */
+    display: block;
 }
 
 .product-header h2 {

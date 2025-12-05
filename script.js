@@ -1,4 +1,9 @@
-// Toggle mobile menu
+const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+
+    video1.playbackRate = 1.5; // 1.5x speed
+    video2.playbackRate = 1.5; // 1.5x speed
+    
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
     navLinks.classList.toggle('active');
