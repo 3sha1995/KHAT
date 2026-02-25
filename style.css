@@ -326,6 +326,7 @@ nav.scrolled {
     height: 100%;
     object-fit: cover;
     display: block;
+    
 }
 
 .hero-vid-label {
@@ -429,6 +430,7 @@ nav.scrolled {
 .hero-vid-thumbs {
     display: flex;
     gap: 0.5rem;
+   
 }
 
 .vid-thumb {
