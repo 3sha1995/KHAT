@@ -30,7 +30,7 @@ function switchVideo(index, btn) {
 
     setTimeout(() => {
         vid.src = videoSources[index].src;
-        label.textContent = videoSources[index].label;
+        if (label) label.textContent = videoSources[index].label;
         vid.load();
         vid.play().catch(() => {});
         vid.style.opacity = '1';
@@ -44,10 +44,48 @@ function switchVideo(index, btn) {
 
 // ===================== VIDEO SPEEDS =====================
 document.addEventListener('DOMContentLoaded', () => {
-    ['video1','video2','video1b','video2b'].forEach(id => {
+    ['heroVid','video1','video2','video1b','video2b'].forEach(id => {
         const v = document.getElementById(id);
         if (v) v.playbackRate = 1.5;
     });
+});
+
+// ===================== HERO SWIPE (MOBILE) =====================
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVid = document.getElementById('heroVid');
+    if (!heroVid) return;
+
+    let startX = 0;
+    let startY = 0;
+
+    heroVid.addEventListener('touchstart', (e) => {
+        const t = e.touches && e.touches[0];
+        if (!t) return;
+        startX = t.clientX;
+        startY = t.clientY;
+    }, { passive: true });
+
+    heroVid.addEventListener('touchend', (e) => {
+        const t = e.changedTouches && e.changedTouches[0];
+        if (!t) return;
+
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+
+        // Horizontal swipe only (avoid fighting vertical scroll)
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+
+        const current = [...document.querySelectorAll('.vid-thumb')].findIndex(b => b.classList.contains('active'));
+        const safeCurrent = current >= 0 ? current : 0;
+
+        if (dx < 0) {
+            // swipe left -> next
+            switchVideo((safeCurrent + 1) % videoSources.length);
+        } else {
+            // swipe right -> prev
+            switchVideo((safeCurrent - 1 + videoSources.length) % videoSources.length);
+        }
+    }, { passive: true });
 });
 
 // ===================== NAV TOGGLE =====================

@@ -286,10 +286,10 @@ nav.scrolled {
 }
 
 .hero-container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 260px);
     gap: 3rem;
     align-items: center;
     position: relative;
@@ -301,19 +301,20 @@ nav.scrolled {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    width: 240px;
+    width: 260px;
     flex-shrink: 0;
+    align-items: center;
 }
 
 .hero-vid-display {
     position: relative;
-    border-radius: 18px;
+    border-radius: 32px;
     overflow: hidden;
     background: rgba(0,0,0,0.4);
-    border: 1.5px solid rgba(255,255,255,0.2);
+    border: 3px solid rgba(255,255,255,0.35);
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-    width: 240px;
-    height: 420px;
+    width: 260px;
+    aspect-ratio: 9 / 16;
     transition: box-shadow 0.3s ease;
 }
 
@@ -1706,7 +1707,37 @@ footer {
     .hero { padding: 3.5rem 5% 4rem; min-height: auto; }
     .hero h1 { font-size: 2rem; }
     .hero p { font-size: 1rem; }
-    .hero-video-box { max-width: 100%; }
+    .hero-video-box { max-width: 100%; margin-top: 2rem; align-items: center; }
+
+    /* Hero video carousel (mobile): keep video in place, scroll picker sideways */
+    .hero-vid-display {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+    }
+
+    .hero-vid-thumbs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 4px;
+        gap: 0.5rem;
+        justify-content: center;
+        width: 100%;
+        max-width: 320px;
+        margin: 0.75rem auto 0;
+    }
+
+    .hero-vid-thumbs::-webkit-scrollbar {
+        height: 0;
+    }
+
+    .vid-thumb {
+        flex: 0 0 auto;
+        min-width: 130px;
+        scroll-snap-align: start;
+        justify-content: flex-start;
+    }
 
     .section-title { font-size: 2rem; }
 
